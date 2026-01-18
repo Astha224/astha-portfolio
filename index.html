@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astha Gupta | Software Engineer Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    header {
+      padding: 3rem 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1e293b, #020617);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: #94a3b8;
+      max-width: 700px;
+      margin: auto;
+    }
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #334155;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    .tags span {
+      display: inline-block;
+      background: #1e293b;
+      padding: 0.3rem 0.6rem;
+      margin: 0.2rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      background: #2563eb;
+      color: white;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #94a3b8;
+      border-top: 1px solid #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Astha Gupta</h1>
+  <p>Software Engineer | C++ | Backend & System Design
+    <br />Building scalable systems and solving problems with clean code.
+  </p>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <p>
+    Software Engineer with 3+ years of experience developing, debugging, and deploying scalable backend and cloud-native systems. Strong in Golang, data structures, APIs, and distributed systems, with hands-on experience in containerized environments and production-grade deployments on AWS and Anthos. Known for writing clean, maintainable code, owning features end-to-end, and collaborating across teams. Actively looking for SDE-2 role with focus on backend engineering and system design. 
+  </p>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="card">
+      <h3>Task Management System</h3>
+      <p>Console-based task manager implementing CRUD operations using OOP principles in C++.</p>
+      <div class="tags">
+        <span>C++</span><span>OOP</span><span>STL</span>
+      </div>
+      <a class="btn" href="https://github.com/Astha224/task-management-system-cpp" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="card">
+      <h3>URL Shortener Service</h3>
+      <p>Backend-style URL shortener simulating services like Bitly with short code generation and redirection.</p>
+      <div class="tags">
+        <span>C++</span><span>Backend</span><span>System Design</span>
+      </div>
+      <a class="btn" href="https://github.com/Astha224/cpp-url-shortener" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="card">
+      <h3>System-Style LRU Cache</h3>
+      <p>Menu-driven LRU Cache with O(1) get/put, eviction strategy, and hit/miss statistics.</p>
+      <div class="tags">
+        <span>C++</span><span>DSA</span><span>LRU Cache</span>
+      </div>
+      <a class="btn" href="https://github.com/Astha224/lru-cache" target="_blank">View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <p>
+    📧 Email: guptaastha0311@gmail.com<br />
+    🔗 GitHub: <a href="https://github.com/Astha224" target="_blank">github.com/&lt;Astha224&gt;</a><br />
+    💼 LinkedIn: <a href="#">https://www.linkedin.com/in/astha-gupta-7071b8203</a>
+  </p>
+</section>
+
+<footer>
+  © 2026 Astha Gupta · Built with HTML, CSS & JavaScript
+</footer>
+
+</body>
+</html>
