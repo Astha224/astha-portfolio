@@ -6,6 +6,54 @@
   <title>Astha Gupta | Software Engineer Portfolio</title>
 
   <style>
+    .intro {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      padding: 4rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .intro-left {
+      flex: 1;
+      text-align: center;
+    }
+
+    .intro-right {
+      flex: 2;
+    }
+
+    .intro-left h1 {
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .intro-left p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .intro-buttons {
+      margin-top: 1rem;
+    }
+
+    .intro-buttons a {
+      margin: 0.3rem;
+    }
+
+    /* Responsive for mobile */
+    @media (max-width: 768px) {
+      .intro {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .intro-right {
+        text-align: left;
+      }
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -136,28 +184,38 @@
 
 <body>
 
-<header>
-  <h1>Astha Gupta</h1>
-  <p>
-    Software Engineer | C++ | Backend & System Design  
-    <br />Building scalable systems and solving problems with clean code.
-  </p>
-  <img 
-    src="astha.jpg" 
-    alt="Astha Gupta"
-    class="profile-pic"
-  />
-</header>
+<section class="intro show">
+  <div class="intro-left">
+    <img src="astha.jpg" alt="Astha Gupta" class="profile-pic" />
 
-<section>
-  <h2>About Me</h2>
-  <p>
-    Software Engineer with 3+ years of experience developing, debugging, and deploying scalable backend and cloud-native systems. Strong in Golang, data structures, APIs, and distributed systems, with hands-on experience in containerized environments and production-grade deployments on AWS and Anthos. Known for writing clean, maintainable code, owning features end-to-end, and collaborating across teams. Actively looking for SDE-2 role with focus on backend engineering and system design.
-  </p>
-  <a href="astha_gupta-resume.pdf" download class="btn">
-    📄 Download Resume
-  </a>
+    <h1>Astha Gupta</h1>
+    <p>Software Engineer | C++ | Backend & System Design</p>
+
+    <div class="intro-buttons">
+      <a href="astha_resume.pdf" download class="btn">📄 Download Resume</a>
+      <a href="https://github.com/Astha224" target="_blank" class="btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/astha-gupta-7071b8203/" target="_blank" class="btn">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="intro-right">
+    <h2>About Me</h2>
+    <p>
+      Software Engineer with 3+ years of experience developing, debugging, and
+      deploying scalable backend and cloud-native systems. Strong in Golang,
+      data structures, APIs, and distributed systems, with hands-on experience
+      in containerized environments and production-grade deployments on AWS and
+      Anthos.
+    </p>
+
+    <p>
+      Known for writing clean, maintainable code, owning features end-to-end,
+      and collaborating across teams. Actively looking for an SDE-2 role with a
+      focus on backend engineering and system design.
+    </p>
+  </div>
 </section>
+
 
 <section>
   <h2>Projects</h2>
