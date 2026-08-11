@@ -3,287 +3,922 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astha Gupta | Software Engineer Portfolio</title>
+  <meta name="description" content="Astha Gupta — DevOps Engineer specializing in AWS, Kubernetes, Helm, Terraform, CI/CD and GitOps." />
+  <title>Astha Gupta — DevOps Engineer</title>
 
   <style>
-    .intro {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-      padding: 4rem 1rem;
-      max-width: 1000px;
-      margin: auto;
+    :root {
+      --bg: #070b1a;
+      --bg-2: #10132b;
+      --card: rgba(19, 25, 54, 0.78);
+      --card-solid: #121a38;
+      --text: #f4f7ff;
+      --muted: #aeb8d1;
+      --line: rgba(174, 184, 209, 0.16);
+      --accent: #5ee7ff;
+      --accent-2: #b88cff;
+      --pink: #ff7ac8;
+      --yellow: #ffd166;
+      --green: #69f0ae;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 22px;
+      --max: 1180px;
     }
 
-    .intro-left {
-      flex: 1;
-      text-align: center;
-    }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
-    .intro-right {
-      flex: 2;
-    }
-
-    .intro-left h1 {
-      margin-top: 1rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .intro-left p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-
-    .intro-buttons {
-      margin-top: 1rem;
-    }
-
-    .intro-buttons a {
-      margin: 0.3rem;
-    }
-
-    /* Responsive for mobile */
-    @media (max-width: 768px) {
-      .intro {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .intro-right {
-        text-align: left;
-      }
-    }
+    html { background: var(--bg); }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #334d88;
-      color: #e5e7eb;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(94,231,255,.17), transparent 24%),
+        radial-gradient(circle at 92% 18%, rgba(184,140,255,.17), transparent 27%),
+        radial-gradient(circle at 50% 55%, rgba(255,122,200,.07), transparent 28%),
+        linear-gradient(180deg, #070b1a 0%, #0a1023 48%, #070b18 100%);
       line-height: 1.6;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    header {
-      padding: 3rem 1rem;
-      text-align: center;
-      background: linear-gradient(135deg, #1e293b, #364ba7);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: auto; }
 
-    header p {
-      color: #94a3b8;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      border-bottom: 2px solid #d5dce5;
-      padding-bottom: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: #012434;
-      border: 1px solid #1e293b;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .card img {
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 170px;
-      object-fit: cover;
-      border-bottom: 1px solid #1e293b;
+      z-index: 20;
+      background: rgba(7,17,31,.68);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid transparent;
+      transition: .3s ease;
     }
 
-    .card-content {
-      padding: 1.5rem;
+    nav.scrolled { border-color: var(--line); }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .card h3 {
-      margin-top: 0;
+    .brand {
+      font-weight: 800;
+      letter-spacing: -.04em;
+      font-size: 20px;
     }
 
-    .tags span {
-      display: inline-block;
-      background: #221e3b;
-      padding: 0.3rem 0.6rem;
-      margin: 0.2rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--muted);
     }
-    .profile-pic {
-      width: 140px;
-      height: 140px;
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 10px 15px;
+      border: 1px solid rgba(103,232,249,.35);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(103,232,249,.06);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1.2rem;
-      border: 2px solid #1e293b;
-    }
-    a {
-      color: #38bdf8;
-      text-decoration: none;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(110,231,183,.10);
+      animation: pulse 1.8s infinite;
     }
 
-    a:hover {
-      text-decoration: underline;
+    @keyframes pulse {
+      50% { box-shadow: 0 0 0 10px rgba(110,231,183,0); }
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 850px;
+      font-size: clamp(52px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, #fff 10%, var(--accent) 52%, #b9a6ff 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1rem;
-      background: #ae75d3;
-      color: white;
-      border-radius: 6px;
-      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
     }
 
-    .btn:hover {
-      background: #e0b4ea;
+    .btn:hover { transform: translateY(-2px); border-color: rgba(103,232,249,.45); }
+
+    .btn-primary {
+      color: #06111c;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-secondary { background: rgba(255,255,255,.035); }
+
+    .terminal {
+      border: 1px solid var(--line);
+      background: rgba(4,12,23,.74);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: perspective(900px) rotateY(-4deg) rotateX(2deg);
+    }
+
+    .terminal-top {
+      display: flex;
+      gap: 7px;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #53667d; }
+
+    .terminal-body {
+      padding: 22px;
+      font: 13px/1.9 "SFMono-Regular", Consolas, monospace;
+      color: #b8c9dc;
+    }
+
+    .terminal-body .cyan { color: var(--accent); }
+    .terminal-body .purple { color: #c4b5fd; }
+    .terminal-body .green { color: var(--green); }
+    .terminal-body .dim { color: #61748c; }
+
+    section { padding: 105px 0; position: relative; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font: 700 12px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4vw, 52px);
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .section-desc {
+      max-width: 500px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(18,34,55,.8), rgba(10,21,37,.6));
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 38px;
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin-bottom: 9px;
+    }
+
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      padding: 30px;
+      min-height: 300px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(103,232,249,.08), transparent 35%),
+        var(--card);
+      backdrop-filter: blur(10px);
+      transition: .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(103,232,249,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .project-number {
+      color: #53667d;
+      font: 700 12px/1 "SFMono-Regular", Consolas, monospace;
+    }
+
+    .project h3 {
+      font-size: 25px;
+      margin: 22px 0 10px;
+      letter-spacing: -.035em;
+    }
+
+    .project p { color: var(--muted); font-size: 14px; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      color: #c7d5e7;
+      background: rgba(255,255,255,.025);
+      font: 11px "SFMono-Regular", Consolas, monospace;
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 10px;
+      border-left: 1px solid var(--line);
+    }
+
+    .role {
+      position: relative;
+      padding: 0 0 48px 35px;
+    }
+
+    .role:last-child { padding-bottom: 0; }
+
+    .role::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 3px solid var(--bg);
+      background: var(--accent);
+      border-radius: 50%;
+      left: -7px;
+      top: 4px;
+      box-shadow: 0 0 0 4px rgba(103,232,249,.10);
+    }
+
+    .role-meta {
+      color: var(--accent);
+      font: 12px "SFMono-Regular", Consolas, monospace;
+    }
+
+    .role h3 { margin: 10px 0 2px; font-size: 25px; }
+    .role-company { color: #d6e2f0; font-weight: 600; }
+    .role p { color: var(--muted); max-width: 800px; font-size: 14px; }
+
+    .skills-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+
+    .skill-card h3 { margin: 0 0 18px; font-size: 18px; }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .skill {
+      padding: 8px 11px;
+      border: 1px solid rgba(157,176,200,.13);
+      background: rgba(255,255,255,.025);
+      border-radius: 9px;
+      color: #d6e2ef;
+      font-size: 13px;
+    }
+
+
+    .project:nth-child(2) { background: radial-gradient(circle at 100% 0%, rgba(184,140,255,.14), transparent 42%), var(--card); }
+    .project:nth-child(3) { background: radial-gradient(circle at 100% 0%, rgba(255,122,200,.12), transparent 42%), var(--card); }
+    .project:nth-child(4) { background: radial-gradient(circle at 100% 0%, rgba(105,240,174,.12), transparent 42%), var(--card); }
+
+    .stat:nth-child(1) strong { color: var(--accent); }
+    .stat:nth-child(2) strong { color: var(--accent-2); }
+    .stat:nth-child(3) strong { color: var(--pink); }
+    .stat:nth-child(4) strong { color: var(--green); }
+
+    .resume-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 32px;
+      border: 1px solid rgba(184,140,255,.24);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 0% 100%, rgba(94,231,255,.11), transparent 35%),
+        radial-gradient(circle at 100% 0%, rgba(184,140,255,.13), transparent 38%),
+        rgba(19,25,54,.78);
+      box-shadow: 0 25px 80px rgba(0,0,0,.25);
+    }
+
+    .resume-label {
+      color: var(--accent-2);
+      font: 700 12px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .resume-card h3 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -.04em;
+    }
+
+    .resume-card p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 14px;
+    }
+
+    .resume-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .resume-chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--line);
+      color: #dbe5f5;
+      font-size: 12px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      margin-top: 22px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .project-link:hover { color: #fff; }
+
+    @media (max-width: 680px) {
+      .resume-card { grid-template-columns: 1fr; }
+    }
+
+    .contact {
+      text-align: center;
+      padding: 105px 25px 120px;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact h2 { max-width: 780px; margin: auto; }
+
+    .contact p {
+      max-width: 620px;
+      margin: 20px auto 30px;
+      color: var(--muted);
     }
 
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--line);
+      color: #687b92;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .terminal { max-width: 680px; transform: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      .nav-links a:not(.nav-cta) { display: none; }
+      h1 { font-size: 52px; }
+      .hero-copy { font-size: 16px; }
+      .projects, .skills-wrap, .stats { grid-template-columns: 1fr; }
+      section { padding: 75px 0; }
+      .section-head { display: block; }
+      .section-desc { margin-top: 18px; }
+      footer { display: block; }
+      footer span { display: block; margin-top: 8px; }
     }
   </style>
 </head>
 
 <body>
-
-<section class="intro show">
-  <div class="intro-left">
-    <img src="astha.jpg" alt="Astha Gupta" class="profile-pic" />
-
-    <h1>Astha Gupta</h1>
-    <p>Software Engineer | C++ | Backend & System Design</p>
-
-    <div class="intro-buttons">
-      <a href="Astha_Resume.pdf" download class="btn">📄 Download Resume</a>
-    </div>
-  </div>
-
-  <div class="intro-right">
-    <h2>About Me</h2>
-    <p>
-       DevOps Engineer with 3+ years of experience building and operating Kubernetes-based DevOps platforms on AWS at enterprise
-  scale. Core expertise in Helm standardization across 40+ products, zero-downtime production releases, Terraform IaC, CI/CD
-  automation. Reduced deployment inconsistencies by 60%, cut MTTR by 40%, and maintained 100% SLA compliance across 30+
-  production patch releases. Experienced in AWS (EKS, VPC, IAM, CloudWatch), RBAC-based multi-tenant cluster security, and
-  full-stack observability with Prometheus and Grafana.
-    </p>
-  </div>
-</section>
-
-
-<section>
-  <h2>Projects</h2>
-
-  <div class="projects">
-
-    <div class="card">
-      <img src="task-manager.jpg" alt="Task Manager Screenshot">
-      <div class="card-content">
-        <h3>Task Management System</h3>
-        <p>Console-based task manager implementing CRUD operations using OOP principles in C++.</p>
-        <div class="tags">
-          <span>C++</span><span>OOP</span><span>STL</span>
-        </div>
-        <a class="btn" href="https://github.com/Astha224/task-management-system-cpp" target="_blank">View on GitHub</a>
+  <nav id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">ASTHA<span>.</span></a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#stack">Stack</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact" class="nav-cta">Let's talk →</a>
       </div>
     </div>
+  </nav>
 
-    <div class="card">
-      <img src="url-shortner.jpg" alt="URL Shortener Screenshot">
-      <div class="card-content">
-        <h3>URL Shortener Service</h3>
-        <p>Backend-style URL shortener simulating Bitly with short code generation and redirection.</p>
-        <div class="tags">
-          <span>C++</span><span>Backend</span><span>System Design</span>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="pulse"></span> DevOps Engineer · Bengaluru / India</div>
+
+          <h1>
+            I build systems<br />
+            that <span class="gradient">ship reliably.</span>
+          </h1>
+
+          <p class="hero-copy">
+            I'm Astha Gupta, a DevOps Engineer with 3+ years of experience building
+            cloud-native deployment platforms, Kubernetes workloads and delivery
+            automation. My focus: make complex infrastructure simpler, repeatable
+            and easier to operate.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">Explore my work ↓</a>
+            <a class="btn btn-secondary" href="mailto:guptaastha0311@gmail.com">Email me ↗</a>
+          </div>
         </div>
-        <a class="btn" href="https://github.com/Astha224/cpp-url-shortener" target="_blank">View on GitHub</a>
-      </div>
-    </div>
 
-    <div class="card">
-      <img src="lru.jpg" alt="LRU Cache Screenshot">
-      <div class="card-content">
-        <h3>System-Style LRU Cache</h3>
-        <p>Menu-driven LRU Cache with O(1) get/put, eviction strategy, and hit/miss statistics.</p>
-        <div class="tags">
-          <span>C++</span><span>DSA</span><span>LRU Cache</span>
+        <div class="terminal reveal">
+          <div class="terminal-top">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="dim">$</span> whoami</div>
+            <div class="cyan">astha@devops</div>
+            <br />
+            <div><span class="dim">role:</span> <span class="purple">DevOps Engineer</span></div>
+            <div><span class="dim">cloud:</span> <span class="cyan">AWS</span></div>
+            <div><span class="dim">orchestration:</span> <span class="cyan">Kubernetes / EKS / Docker</span></div>
+            <div><span class="dim">delivery:</span> <span class="green">GitOps / CI/CD / Github Actions</span></div>
+            <div><span class="dim">infra:</span> <span class="purple">Terraform</span></div>
+            <div><span class="dim">packaging:</span> <span class="cyan">Helm</span></div>
+            <br />
+            <div><span class="dim">$</span> kubectl get ambition</div>
+            <div class="green">STATUS: ALWAYS_LEARNING</div>
+          </div>
         </div>
-        <a class="btn" href="https://github.com/Astha224/lru-cache" target="_blank">View on GitHub</a>
       </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat">
+            <strong>40+</strong>
+            <span>microservices standardized with reusable Helm patterns</span>
+          </div>
+          <div class="stat">
+            <strong>50+</strong>
+            <span>zero-downtime security patch releases executed</span>
+          </div>
+          <div class="stat">
+            <strong>20+</strong>
+            <span>P1 escalations resolved with improved MTTR</span>
+          </div>
+          <div class="stat">
+            <strong>3.7</strong>
+            <span>years working across cloud & DevOps engineering</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 / Selected work</div>
+            <h2>Infrastructure, but<br />with intent.</h2>
+          </div>
+          <p class="section-desc">
+            A few areas where I've turned repetitive infrastructure work into
+            reusable engineering systems.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project reveal">
+            <span class="project-number">01 — PLATFORM</span>
+            <h3>Helm at scale</h3>
+            <p>
+              Standardized Helm deployment patterns across 40+ enterprise
+              microservices using reusable templates and consistent configuration
+              conventions, reducing deployment inconsistencies by 60%.
+            </p>
+            <div class="tags">
+              <span class="tag">Helm</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">YAML</span>
+              <span class="tag">Go Templates</span>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">02 — CLOUD</span>
+            <h3>EKS platform engineering</h3>
+            <p>
+              Built an AWS EKS platform foundation with Terraform, VPC networking,
+              private/public subnets, NAT and Kubernetes ingress — designed around
+              repeatability rather than click-ops.
+            </p>
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">EKS</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">Nginx</span>
+              <span class="tag">ELB</span>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">03 — DELIVERY</span>
+            <h3>GitOps release engineering</h3>
+            <p>
+              Worked with Git-driven deployment workflows and Argo CD to make
+              releases auditable, repeatable and aligned with the declared state
+              stored in version control.
+            </p>
+            <div class="tags">
+              <span class="tag">Argo CD</span>
+              <span class="tag">Git</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Jenkins</span>
+              <span class="tag">GitHub Actions</span>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">04 — RELIABILITY</span>
+            <h3>Scaling & observability</h3>
+            <p>
+              Implemented HPA/VPA for six microservices and worked with
+              Prometheus/Grafana-style observability to reason about resource
+              behavior, errors and service health.
+            </p>
+            <div class="tags">
+              <span class="tag">HPA</span>
+              <span class="tag">VPA</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Kubernetes</span>
+            </div>
+          </article>
+        </div>
+
+        <div style="height:22px;"></div>
+        <div class="section-head reveal" style="margin-top:55px;">
+          <div>
+            <div class="section-kicker">01B / Featured builds</div>
+            <h2>Two projects worth<br /><span class="gradient">opening the repo for.</span></h2>
+          </div>
+          <p class="section-desc">
+            These are the projects that show cloud architecture, automation and practical DevOps thinking.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project reveal">
+            <span class="project-number">BUILD 01 · Kubernets/AI</span>
+            <h3>AI-Powered Kubernetes Troubleshooting Assistant</h3>
+            <p>
+              Reduced manual log-analysis time by 75% by building a FastAPI-based tool that uses LLMs to automate Kubernetes root-cause analysis, classify log severity, and surface actionable remediation steps for on-call engineers.
+            </p>
+            <div class="tags">
+              <span class="tag">Argo CD</span><span class="tag">AI</span>
+              <span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Git</span>
+            </div>
+            <a class="project-link" href="#contact">Discuss the pipeline →</a>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">BUILD 02 · CICD/AWS/Terraform</span>
+            <h3>CI/CD Pipeline and Infrastructure Automation</h3>
+            <p>
+              Automated end-to-end build-to-deploy workflow by provisioning AWS infrastructure with Terraform and integrating Jenkins, Nexus,and Docker to automate build, test, artifact management, configuration, and deployment workflows, with Argo CD managing env. 
+            </p>
+            <div class="tags">
+              <span class="tag">Jenkins</span><span class="tag">CICD</span>
+              <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Docker</span><span class="tag">ArgoCD</span>
+            </div>
+            <a class="project-link" href="#contact">Discuss the design →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">02 / Experience</div>
+            <h2>Engineering in<br />the real world.</h2>
+          </div>
+          <p class="section-desc">
+            My work sits at the intersection of application delivery, cloud
+            infrastructure and developer experience.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="role reveal">
+            <div class="role-meta">CURRENT · 3+ YEARS</div>
+            <h3>DevOps Engineer</h3>
+            <div class="role-company">OpenText · Documentum D2 Cloud Team</div>
+            <p>
+              Build and maintain deployment automation, Docker images, Helm
+              charts/templates, Kubernetes configurations and cloud deployment
+              workflows across AWS/Azure environments. Contribute to Terraform,
+              CI/CD, security scanning and operational troubleshooting.
+            </p>
+          </div>
+
+          <div class="role reveal">
+            <div class="role-meta">FOCUS AREAS</div>
+            <h3>What I solve</h3>
+            <p>
+              Deployment consistency · Infrastructure as Code · Kubernetes
+              workloads · Release automation · Container security · Secrets
+              management · Resource scaling · Cloud IAM · Incident debugging
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="resume">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">03 / Resume</div>
+            <h2>Want the<br />one-page version?</h2>
+          </div>
+          <p class="section-desc">
+            A recruiter-friendly snapshot of my DevOps experience, cloud stack,
+            impact and technical projects.
+          </p>
+        </div>
+
+        <div class="resume-card reveal">
+          <div>
+            <div class="resume-label">Astha Gupta · DevOps Engineer</div>
+            <h3>AWS • Kubernetes • Terraform • CI/CD</h3>
+            <p>
+              3+ years of experience across cloud deployments, Kubernetes,
+              Helm, Docker, Terraform, GitOps and CI/CD. Focused on building
+              reliable, repeatable delivery systems.
+            </p>
+            <div class="resume-meta">
+              <span class="resume-chip">AWS / EKS</span>
+              <span class="resume-chip">Kubernetes</span>
+              <span class="resume-chip">Terraform</span>
+              <span class="resume-chip">Helm</span>
+              <span class="resume-chip">CI/CD</span>
+              <span class="resume-chip">GitOps</span>
+              <span class="resume-chip">Linux</span>
+              <span class="resume-chip">Monitoring</span>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="AsthaGupta_3YOE_Devops_Resume.pdf" download>Download Resume ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Technical stack</div>
+            <h2>Tools are useful.<br />Systems matter more.</h2>
+          </div>
+          <p class="section-desc">
+            The technologies I use to turn infrastructure requirements into
+            maintainable engineering workflows.
+          </p>
+        </div>
+
+        <div class="skills-wrap">
+          <div class="skill-card reveal">
+            <h3>Cloud & Infrastructure</h3>
+            <div class="skill-list">
+              <span class="skill">AWS</span>
+              <span class="skill">EKS</span>
+              <span class="skill">VPC</span>
+              <span class="skill">IAM</span>
+              <span class="skill">Terraform</span>
+              <span class="skill">Azure</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Containers & Kubernetes</h3>
+            <div class="skill-list">
+              <span class="skill">Kubernetes</span>
+              <span class="skill">Docker</span>
+              <span class="skill">Helm</span>
+              <span class="skill">HPA</span>
+              <span class="skill">VPA</span>
+              <span class="skill">Nginx Ingress</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>CI/CD & GitOps</h3>
+            <div class="skill-list">
+              <span class="skill">Argo CD</span>
+              <span class="skill">Jenkins</span>
+              <span class="skill">GitHub Actions</span>
+              <span class="skill">GitLab CI</span>
+              <span class="skill">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Engineering & Security</h3>
+            <div class="skill-list">
+              <span class="skill">Linux</span>
+              <span class="skill">Shell</span>
+              <span class="skill">Go</span>
+              <span class="skill">Prometheus</span>
+              <span class="skill">Grafana</span>
+              <span class="skill">Trivy</span>
+              <span class="skill">Checkov</span>
+              <span class="skill">AWS Secrets Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap reveal">
+        <div class="section-kicker">05 / Contact</div>
+        <h2>Building a platform team?<br /><span class="gradient">Let's talk.</span></h2>
+        <p>
+          I'm currently exploring DevOps Engineer and Cloud Platform Engineer
+          opportunities where I can work on scalable infrastructure, Kubernetes,
+          automation and cloud-native delivery.
+        </p>
+        <div class="hero-actions" style="justify-content:center;">
+          <a class="btn btn-primary" href="mailto:guptaastha0311@gmail.com">Start a conversation ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex;justify-content:space-between;gap:20px;width:100%;">
+      <span>© 2026 Astha Gupta</span>
+      <span>DevOps · Cloud · Kubernetes · Automation</span>
     </div>
+  </footer>
 
-  </div>
-</section>
+  <script>
+    const nav = document.getElementById("nav");
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
 
-<section>
-  <h2>Contact</h2>
-  <p>
-    📧 Email: guptaastha0311@gmail.com<br />
-    🔗 GitHub: <a href="https://github.com/Astha224" target="_blank">github.com/Astha224</a><br />
-    💼 LinkedIn:     <a href="https://www.linkedin.com/in/astha-gupta-7071b8203/" target="_blank">
-      linkedin.com/in/astha-gupta
-    </a>
-  </p>
-</section>
-
-<footer>
-  © 2026 Astha Gupta · Built with HTML, CSS & JavaScript
-</footer>
-
-<script>
-  const sections = document.querySelectorAll("section");
-
-  const observer = new IntersectionObserver(
-    entries => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
         }
       });
-    },
-    { threshold: 0.15 }
-  );
+    }, { threshold: 0.12 });
 
-  sections.forEach(section => observer.observe(section));
-</script>
-
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
